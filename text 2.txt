@@ -1,0 +1,39 @@
+document.addEventListener('input', function(event) {
+    // Check if the event target is an input field
+    if (event.target.tagName.toLowerCase() === 'input' || event.target.tagName.toLowerCase() === 'textarea') {
+        let typedText = event.target.value.toLowerCase();
+        
+        // Check if the word "popup" is typed anywhere in the input field
+        if (typedText.includes('popup')) {
+            triggerPopup(); // Trigger the popup function
+        }
+    }
+});
+
+// Function to create and show the popup
+function triggerPopup() {
+    // Create the popup div
+    var popup = document.createElement('div');
+    popup.style.position = 'fixed';
+    popup.style.top = '50%';
+    popup.style.left = '50%';
+    popup.style.transform = 'translate(-50%, -50%)';
+    popup.style.padding = '20px';
+    popup.style.backgroundColor = 'lightblue';
+    popup.style.border = '2px solid black';
+    popup.style.zIndex = '9999';
+    popup.style.fontSize = '16px';
+    popup.style.color = 'black';
+    popup.innerHTML = 'This is your popup for everyone on this page!';
+
+    // Add a close button to the popup
+    var closeButton = document.createElement('button');
+    closeButton.innerText = 'Close';
+    closeButton.onclick = function() {
+        popup.style.display = 'none';
+    };
+    popup.appendChild(closeButton);
+
+    // Append the popup to the body
+    document.body.appendChild(popup);
+}
